@@ -1,6 +1,7 @@
 var app = angular.module('main', ['ngTable']).
-controller('DemoCtrl', function($scope,$element, $http, ngTableParams) {
+controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) {
 	$scope.data = [];
+  $scope.usernames=[];
 	$scope.details = [];
 	$http.get("data.json").success(function(result){
 		//$scope.dataset =$scope.data;
@@ -11,6 +12,7 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams) {
 	$scope.showuserlist=true;
   $scope.showdataitem=false;
   $scope.searchResult=false;
+  $scope.usersearchdata=false;
 	//$scope.filedata = 'none';
 	$scope.usercount=$scope.data.length;
 	$scope.adddata=function(){
@@ -20,9 +22,11 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams) {
 				name:$scope.username,
 				age:$scope.age,
 				country:$scope.country,
+        profile:$scope.info,
 				gender:$scope.persongender,
 				imgpath:$scope.imageupload
 		});
+
 				/*var f = document.getElementById('file').files[0],
 				r = new FileReader();
 				r.onloadend = function(e){
@@ -36,14 +40,14 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams) {
 	$scope.usercount++;
 	};
 
-	$scope.showdata=function(userid,names,ages,usercountry,usergender){
+	$scope.showdata=function(userid,names,ages,usercountry,usergender,infouser){
 		$scope.details = [];
    // names=$.trim(names);
     /*$scope.namess = {
         text: names,
         word: /^\s*\w*\s*$/
       };*/
-		$scope.details.push({id:names+usercountry+userid,name:names,age:ages,country:usercountry,gender:usergender,email:names+'@angular.in'});
+		$scope.details.push({id:names+usercountry+userid,name:names,age:ages,country:usercountry,gender:usergender,profile:infouser,email:names+'@angular.in'});
 		$scope.showitem=true;
 	};
 	$scope.removename = function (index) {
@@ -85,10 +89,25 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams) {
        // alert($scope.resultset.length);
     }
 	};
+  $scope.showcurrent=function(a){
+     
+          $scope.resultset=[];
+        
+		     angular.forEach($scope.data, function(value, key) {
+                if (value.name === a) {
+                     $scope.num=$scope.resultset.length + 1;
+                    $scope.resultset.push({number:$scope.num,id:value.id,name:value.name,age:value.age,country:value.country,gender:value.gender,profile:value.profile});
+                }
+             //$scope.num++;
+            })
+        $scope.searchResult=true;
+        $scope.searchuserdata=false;
+       // alert($scope.resultset.length);
+	};
       
 	$scope.searchclose=function(){
 		$scope.searchuserdata=!$scope.searchuserdata;
-    $scope.search='';
+    //$scope.search='';
      $scope.searchResult=false;
 	};
 	$scope.tableParams = new ngTableParams({
@@ -104,5 +123,16 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams) {
 	});
 	});
 });
-
+app.directive('search',function($timeout){
+     return {
+      restrict: 'C',
+      link:function(scope, element, attrs){
+          element.on("keydown keypress",function(){
+                $timeout(function() {
+                 scope.usersearchdata=true;
+                },1000);
+           })
+        }
+      }
+})
 //angular.bootstrap(document, ['main']);
