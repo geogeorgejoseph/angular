@@ -110,13 +110,15 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
     //$scope.search='';
      $scope.searchResult=false;
 	};
+  //http://ng-table.com/#/intro/demo-real-world
 	$scope.tableParams = new ngTableParams({
 		page: 1, // show first page
-		count: 10 // count per page
+		count: 5 // count per page
 	}, {
 	total:$scope.data.length, // length of data
 	getData: function($defer, params) {
 	//params.total();
+  //dataset: $scope.data; 
 	$defer.resolve($scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
 	//$defer.resolve($scope.dataset.slice((params.page() - 1) * params.count(), params.page() * params.count()));
 	}
