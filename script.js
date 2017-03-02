@@ -20,7 +20,7 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams) {
 				name:$scope.username,
 				age:$scope.age,
 				country:$scope.country,
-				gender:"male",
+				gender:$scope.persongender,
 				imgpath:$scope.imageupload
 		});
 				/*var f = document.getElementById('file').files[0],
