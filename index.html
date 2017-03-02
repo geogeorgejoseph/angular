@@ -343,6 +343,7 @@
 		<tr ng-repeat="user in $data  | orderBy:'name'"  >
 		    <!--<td data-title="'Action'"><button ng-click="removename($index)">Remove</button></td>-->
 		    <td ng-show="showdataitem">{{user.name}} age is {{user.age}}</td>
+		    <td data-title="'Pic'"><img src={{user.gender}}.png alt={{user.name}}-image></td>
 		    <td data-title="'Name'">{{user.name}}</td>
 		    <td data-title="'Age'">{{user.age}}</td>
 		    <td data-title="'Country'">{{user.country}}</td>
