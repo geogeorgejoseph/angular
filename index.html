@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body{
+			width:100%;
+			margin:0;
+			padding:0;
+			background:#000000!important;
+		}
+		.mainapp{
+			width:1100px;
+			margin:0 auto;
+			background:#fff;
+			padding:0;
+			position:relative;
+		}
+		.ng-table tr:nth-child(even){
+			background:rgba(101,168,161,0.2);
+		}
+		.ng-table td,.ng-table th{
+			border-left:2px solid #ffffff;
+			text-align:center;
+		}
+		.header{
+			background:rgba(101,168,161,0.5);
+		}
+		th.header{
+			background:rgba(101,168,161,.6);
+		}
+		.total-users{
+			float:right;
+			margin:0 10px 0 0;
+			color:rgba(101, 168, 161, 0.5);
+			font-weight:700;
+			
+		}
+		.total-users span{
+			border-radius:100%;
+			border:1px solid #ffffff;
+			padding:2px;
+			background-color:#ffffff;
+		}
+		.selection-users{
+			background:#ffffff;
+			border:none;
+			width:200px;
+			padding:5px 0;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			text-indent: 1px;
+			text-overflow: '';
+		}
+		.selection-users option{
+			outline:0px;
+			
+		}
+		.selection-users option:nth-child(even){
+			background:rgba(101,168,161,0.2);
+		}
+		.content-wrapper{
+			padding:10px;
+		}
+		.page{
+			clear:both;
+			overflow:hidden;
+			padding:10px 0;
+			color:rgba(101,168,161,1);
+			font-weight:700;
+		}
+		.page span:nth-child(1){
+			
+		}
+		.page-details .label-data{
+			color:#ffffff;
+			border-radius:100%;
+			padding:2px;
+			background-color:rgba(101,168,161,1);
+			display:inline-block;
+			text-align:center;
+			width:25px;
+		}
+		.page-number{
+			float:left;
+		}
+		.total-page-number{
+			float:right;
+		}
+		.adduser{
+			
+		}
+		.search.item,.adddetails,.user-details-wrapper{
+			display:block;	
+			width:400px;
+			border:1px solid #DEDEDE;
+			padding:10px;
+			overflow:hidden;
+			margin:10px;
+			background:#f1f1f1;
+			position:fixed;
+			left:50%;
+			margin:0 0 0 -200px;
+			top:30%;
+				
+		}
+		.search.item{
+			padding:30px 40px;
+		}
+		.search-block,.adduser-block,.user-details-block{
+			position:absolute;
+			height:100%;
+			width:100%;
+			left:0;
+			background:rgba(101,168,161,0.5);
+			top:0;
+		}
+		.user-details-wrapper{
+			background:rgb(135,199,29);
+			padding:20px;
+			border:0px;
+			
+		}
+		.user-details-wrapper .detailsblock{
+			overflow:hidden;
+			clear:both;
+		}
+		.adddetails .item{
+			clear:both;
+			padding:10px 0
+		}
+		.detailsblock div{
+			padding:0;
+			font-size:14px;
+			
+		}
+		.detailsblock .label{
+			color:#ffffff;
+			font-weight:300;
+			width:50px;
+			text-align:left;	
+		}
+		.detailsblock .output{
+			color:#ffffff;
+			font-weight:700;
+			padding:0 0 0 10px;
+		}
+		.adddetails label{
+			float:left;		
+		}
+		.adddetails input,.adddetails button{
+			float:right;		
+		}
+		.detailsblock{
+			clear:both;		
+		}
+		.detailsblock div,.flag{
+			display:inline-block;
+		}
+		.flag{
+			width:50px;
+			height:50px;
+		}
+		
+		.user-details-block .close{
+			font-size:14px;
+			color:#fff;
+			text-shadow:none;
+			opacity:1;
+		}
+		.adduser{
+			clear:both;
+			overflow:hidden;
+			margin:0 0 20px 0;
+		}
+		.adduser li{
+			list-style-type:none;
+			float:left;
+			padding:10px;
+		}
+		.footer{
+			background: none repeat scroll 0 0 rgba(101, 168, 161, 0.5);
+			height:50px;
+		}
+    .resultset{
+      list-style-type:none;
+      padding:0;
+      border-bottom:1px solid #cdcdcd;
+    }
+    .resultset:last-child{
+        border:none;
+    }
+     .resultset li{
+      font-size:16px;
+    }
+     .resultset .name{
+      font-size:20px;
+      
+    } 
+    .searchresult {
+    background: rgba(101, 168, 161, 0.5) none repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+	 .searchresult .searchresult-sub{
+    background: #f1f1f1 none repeat scroll 0 0;
+    border: 1px solid #dedede;
+    display: block;
+    left: 50%;
+    margin: 0 0 0 -200px;
+    overflow: hidden;
+    padding: 10px;
+    position: fixed;
+    top: 10%;
+    width: 400px;
+  }
+	</style>
+ 	<!--<script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script>-->
+	<script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="angular.js"></script>
+	<!--<script src="http://code.angularjs.org/1.1.5/angular.min.js" ></script>-->
+	<!-- <script data-require="angular.js@1.3.x" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.7/angular.js" data-semver="1.3.7"></script>-->
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.js"></script>
+    
+    <link data-require="ng-table@*" data-semver="0.3.0" rel="stylesheet" href="http://bazalt-cms.com/assets/ng-table/0.3.0/ng-table.css" />
+    <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+   <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="bootstrap.min.css" />
+    
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+</head>
+<body ng-app="main" >
+    <div ng-controller="DemoCtrl" class="mainapp">
+	<div class="header">
+		<div class="adduser">
+			<ul>
+				<li><button ng-click="addusers()">Add User</button></li>
+				<li><button ng-click="searchusers()">Search User</button></li>
+				<li>{{data}}</li>
+			</ul>
+			<div class="total-users">
+				<span ng-click="showtotalusers()">{{usercount}}</span>
+				<select class="selection-users" ng-show="showuserlist" >
+					<option ng-repeat="users in data" ng-click="showdata(users.id,users.name,users.age,users.country,users.gender)">{{users.name}}</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="content-wrapper">
+		<div ng-repeat="det in details" class="user-details-block" ng-show="showitem">
+			<div class="user-details-wrapper">
+				<div class="close" ng-click="close()">close</div>
+				<div class="detailsblock"><img src={{det.name}}.jpg alt={{det.name}}-image></div>
+				<div class="detailsblock">
+					<div class="namelbl label">Name:</div>
+					<div class="name output">{{det.name}}</div>
+				</div>
+				<div class="detailsblock">
+					<div class="idlbl label">ID:</div>
+					<div class="id output">{{det.id.split(' ').join('') }}</div>
+				</div>
+				<div class="detailsblock">
+					<div class="genderlbl label">Gender:</div>
+					<div class="gender output">{{det.gender}}</div>
+				</div>
+				<div class="detailsblock">
+					<div class="emaillbl label">Email-ID:</div>
+					<div class="email output">{{det.email.split(' ').join('') }}</div>
+				</div>
+				<div class="detailsblock">	
+					<div class="agelbl label">Age:</div>
+					<div class="age output">{{det.age}}</div>
+				</div>
+				<div class="detailsblock">
+					<div class="countrylbl label">Country:</div>
+					<div class="country output">{{det.country}}</div>
+				</div>
+				<div class="detailsblock countryimg">
+						<img class="flag" src="img/{{det.country | lowercase }}.png" alt={{det.name}}-image>		
+				</div>
+	
+				
+			</div>
+		</div>
+		<div class="adduser-block" ng-show="addform">
+			<div  class="adddetails" >
+		
+				<form >
+					<div class="item"><label>Name:</label><input type="text" ng-model="username"><br/></div>
+					<div class="item"><label>Age:</label><input type="number" ng-model="age"><br/></div>
+					<div class="item"><label>Country:</label><input type="text" ng-model="country"><br/></div>
+					<div class="item"><label>Upload Image:</label><input type="file" id="file" ng-model="imageupload"><br/></div>
+					<div class="item"><button ng-click="adddata()">Add</button><button ng-click="addclose()">Cancel</button></div>
+					<!--<div>{{filedata}}</div>-->
+				
+				</form>
+			</div>
+		</div>
+		<div class="search-block" ng-show="searchuserdata">
+		
+			<div class="search item" >
+					
+						<label>Search:</label>
+						<input type="search" ng-model="search">
+            <button ng-click="searchdata()">Search</button>
+						<button ng-click="searchclose()">close</button>
+			</div>
+		</div>
+    <div class="searchresult" ng-show="searchResult">
+      <div class="searchresult-sub">
+        <span ng-click="searchclose()" class="close">close</span>
+        <ul ng-repeat="results in resultset" class="resultset">
+            <li class="name">{{results.number}}{{results.name}}</li>
+            <li>{{results.age}}</li>
+            <li>{{results.id}}</li>
+             <li>{{results.country}}</li>
+            <li>{{results.gender}}</li>
+            <li>{{results.profile}}</li>
+        </ul>
+      </div>
+    </div>
+		<div class="page">
+			<div class="page-number page-details"><span>Page:</span> <span class="label-data">{{tableParams.page()}}</span></div>
+			<div class="total-page-number page-details"><span>Count per page:</span> <span class="label-data"> {{tableParams.count()}}</span></div>
+		</div>
+		
+		<table ng-table="tableParams" class="table">
+		<tr ng-repeat="user in $data  | orderBy:'name'"  >
+		    <!--<td data-title="'Action'"><button ng-click="removename($index)">Remove</button></td>-->
+		    <td ng-show="showdataitem">{{user.name}} age is {{user.age}}</td>
+		    <td data-title="'Name'">{{user.name}}</td>
+		    <td data-title="'Age'">{{user.age}}</td>
+		    <td data-title="'Country'">{{user.country}}</td>
+		     <td data-title="'Address'">{{user.name | uppercase }},{{user.country | uppercase}}</td>
+			 <td data-title="'View More'"><button ng-click="showdata(user.id,user.name,user.age,user.country,user.gender)">View More</button></d>
+		    <!-- <td data-title="'image'">{{user.imgpath}}</td>-->
+		</tr>
+		</table>
+	    </div>
+	   <div class="footer">
+	   </div>
+    </div>
+</body>
+</html>
