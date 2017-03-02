@@ -237,6 +237,7 @@
 			<ul>
 				<li><button ng-click="addusers()">Add User</button></li>
 				<li><button ng-click="searchusers()">Search User</button></li>
+				<!--<li>{{data}}</li>-->
 			</ul>
 			<div class="total-users">
 				<span ng-click="showtotalusers()">{{usercount}}</span>
@@ -250,7 +251,7 @@
 		<div ng-repeat="det in details" class="user-details-block" ng-show="showitem">
 			<div class="user-details-wrapper">
 				<div class="close" ng-click="close()">close</div>
-				<div class="detailsblock"><img src={{det.name}}.jpg alt={{det.name}}-image></div>
+				<div class="detailsblock"><img src={{det.gender}}.png alt={{det.name}}-image></div>
 				<div class="detailsblock">
 					<div class="namelbl label">Name:</div>
 					<div class="name output">{{det.name}}</div>
@@ -288,6 +289,12 @@
 				<form >
 					<div class="item"><label>Name:</label><input type="text" ng-model="username"><br/></div>
 					<div class="item"><label>Age:</label><input type="number" ng-model="age"><br/></div>
+					<div class="item"><label>Age:</label>
+              <select ng-model="persongender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+            </select>
+          </div>
 					<div class="item"><label>Country:</label><input type="text" ng-model="country"><br/></div>
 					<div class="item"><label>Upload Image:</label><input type="file" id="file" ng-model="imageupload"><br/></div>
 					<div class="item"><button ng-click="adddata()">Add</button><button ng-click="addclose()">Cancel</button></div>
