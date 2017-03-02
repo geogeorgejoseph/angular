@@ -348,7 +348,7 @@
 		</div>-->
 		
 		<table ng-table="tableParams" class="table table-condensed table-striped">
-		<tr ng-repeat="user in $data  | orderBy:'name'"  >
+		<tr ng-repeat="user in data  | orderBy:'name'"  >
 		    <!--<td data-title="'Action'"><button ng-click="removename($index)">Remove</button></td>-->
 		    <td ng-show="showdataitem">{{user.name}} age is {{user.age}}</td>
 		    <td data-title="'Pic'"><img src={{user.gender}}.png alt={{user.name}}-image></td>
