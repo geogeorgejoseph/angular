@@ -35,7 +35,7 @@
 			font-weight:700;
 			
 		}
-		.total-users span{
+		.total-users span.ng-binding{
 			border-radius:100%;
 			border:1px solid #ffffff;
 			padding:2px;
@@ -240,10 +240,10 @@
 				<!--<li>{{data}}</li>-->
 			</ul>
 			<div class="total-users">
-				<span ng-click="showtotalusers()">{{usercount}}</span>
-				<select class="selection-users" ng-show="showuserlist" >
-					<option ng-repeat="users in data" ng-click="showdata(users.id,users.name,users.age,users.country,users.gender)">{{users.name}}</option>
-				</select>
+				<span>Total Users :<span ng-click="showtotalusers()">{{usercount}}</span></span>
+				<!--<select class="selection-users" ng-show="showuserlist" >
+					<option ng-repeat="users in data" ng-click="showdata(users.id,users.name,users.age,users.country,users.gender,user.profile)">{{users.name}}</option>
+				</select>-->
 			</div>
 		</div>
 	</div>
@@ -276,6 +276,10 @@
 					<div class="countrylbl label">Country:</div>
 					<div class="country output">{{det.country}}</div>
 				</div>
+				<div class="detailsblock">
+					<div class="infolbl label">Information:</div>
+					<div class="info output">{{det.profile}}</div>
+				</div>
 				<div class="detailsblock countryimg">
 						<img class="flag" src="img/{{det.country | lowercase }}.png" alt={{det.name}}-image>		
 				</div>
@@ -296,6 +300,7 @@
             </select>
           </div>
 					<div class="item"><label>Country:</label><input type="text" ng-model="country"><br/></div>
+					<div class="item"><label>Information:</label><textarea type="text" ng-model="info"></textarea><br/></div>
 					<div class="item"><label>Upload Image:</label><input type="file" id="file" ng-model="imageupload"><br/></div>
 					<div class="item"><button ng-click="adddata()">Add</button><button ng-click="addclose()">Cancel</button></div>
 					<!--<div>{{filedata}}</div>-->
@@ -308,8 +313,11 @@
 			<div class="search item" >
 					
 						<label>Search:</label>
-						<input type="search" ng-model="search">
-            <button ng-click="searchdata()">Search</button>
+						<input type="text" ng-model="search.name">
+            <ul ng-show='search.name' ng-repeat="users in data | filter:search">
+                  <li ng-click="showcurrent(users.name)">{{$index + 1}} <img src={{users.gender}}.png alt={{users.name}}-image> <span>{{users.name }}</li>
+            </ul>
+            <!--<button ng-click="searchdata()">Search</button>-->
 						<button ng-click="searchclose()">close</button>
 			</div>
 		</div>
@@ -317,12 +325,12 @@
       <div class="searchresult-sub">
         <span ng-click="searchclose()" class="close">close</span>
         <ul ng-repeat="results in resultset" class="resultset">
-            <li class="name">{{results.number}}{{results.name}}</li>
-            <li>{{results.age}}</li>
-            <li>{{results.id}}</li>
-             <li>{{results.country}}</li>
-            <li>{{results.gender}}</li>
-            <li>{{results.profile}}</li>
+            <li class="name"><img src={{results.gender}}.png alt={{results.name}}-image> {{results.name}}</li>
+            <li>ID:{{results.id}}</li>
+            <li>Age:{{results.age}}</li>
+             <li>Counry:{{results.country}}</li>
+            <li>Gender:{{results.gender}}</li>
+            <li>info:{{results.profile}}</li>
         </ul>
       </div>
     </div>
@@ -339,7 +347,7 @@
 		    <td data-title="'Age'">{{user.age}}</td>
 		    <td data-title="'Country'">{{user.country}}</td>
 		     <td data-title="'Address'">{{user.name | uppercase }},{{user.country | uppercase}}</td>
-			 <td data-title="'View More'"><button ng-click="showdata(user.id,user.name,user.age,user.country,user.gender)">View More</button></d>
+			 <td data-title="'View More'"><button ng-click="showdata(user.id,user.name,user.age,user.country,user.gender,user.profile)">View More</button></d>
 		    <!-- <td data-title="'image'">{{user.imgpath}}</td>-->
 		</tr>
 		</table>
