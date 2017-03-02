@@ -160,7 +160,9 @@
 			width:50px;
 			height:50px;
 		}
-		
+		td{
+      vertical-align:middle!important;
+    }
 		.user-details-block .close{
 			font-size:14px;
 			color:#fff;
@@ -339,7 +341,7 @@
 			<div class="total-page-number page-details"><span>Count per page:</span> <span class="label-data"> {{tableParams.count()}}</span></div>
 		</div>
 		
-		<table ng-table="tableParams" class="table">
+		<table ng-table="tableParams" class="table table-condensed table-striped">
 		<tr ng-repeat="user in $data  | orderBy:'name'"  >
 		    <!--<td data-title="'Action'"><button ng-click="removename($index)">Remove</button></td>-->
 		    <td ng-show="showdataitem">{{user.name}} age is {{user.age}}</td>
