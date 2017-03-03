@@ -15,9 +15,11 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
   $scope.searchResult=false;
   $scope.usersearchdata=false;
   $scope.activedetailsclass="inactive";
+  $scope.activeadduserclass="inactive";
 	//$scope.filedata = 'none';
 	$scope.usercount=$scope.data.length;
 	$scope.adddata=function(){
+        $scope.activeadduserclass="inactive";
 		 $scope.newid=$scope.data.length + 1;//alert($element.attr("class"));
 		 $scope.data.push({
 				id:$scope.newid,
@@ -68,12 +70,15 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
      $scope.activedetailsclass="inactive";
 	};
 	$scope.addclose=function(){
+      $scope.activeadduserclass="inactive";
 		$scope.addform=!$scope.addform;
 	};
 	$scope.addusers=function(){
+  $scope.activeadduserclass="active";
 		$scope.addform=!$scope.addform;
 	};
 	$scope.searchusers=function(){
+    
 		$scope.searchuserdata=!$scope.searchuserdata;
     
 	};
