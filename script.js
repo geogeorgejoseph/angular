@@ -5,6 +5,7 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
 	$scope.details = [];
 	$http.get("data.json").success(function(result){
 		//$scope.dataset =$scope.data;
+//http://embed.plnkr.co/ip6owK/ indexed db
 	$scope.data= result;
 	$scope.showitem=false;
 	$scope.addform=false;
@@ -13,6 +14,7 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
   $scope.showdataitem=false;
   $scope.searchResult=false;
   $scope.usersearchdata=false;
+  $scope.activedetailsclass="inactive";
 	//$scope.filedata = 'none';
 	$scope.usercount=$scope.data.length;
 	$scope.adddata=function(){
@@ -49,6 +51,7 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
       };*/
 		$scope.details.push({id:names+usercountry+userid,name:names,age:ages,country:usercountry,gender:usergender,profile:infouser,email:names+'@angular.in'});
 		$scope.showitem=true;
+     $scope.activedetailsclass="active";
 	};
 	$scope.removename = function (index) {
    		 $scope.data.splice(index, 1);//alert(index);http://hello-angularjs.appspot.com/removetablerow
@@ -62,6 +65,7 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
 	};
 	$scope.close=function(){
 		$scope.showitem=false;
+     $scope.activedetailsclass="inactive";
 	};
 	$scope.addclose=function(){
 		$scope.addform=!$scope.addform;
