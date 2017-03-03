@@ -35,7 +35,7 @@
 		</div>
 	</div>
 	<div class="content-wrapper"><!--ng-show="showitem"-->
-		<div  class="user-details-block {{activedetailsclass}}" >
+		<div  class="user-details-block left-anim anim-elem {{activedetailsclass}}" >
         <div ng-repeat="det in details">
 			    <div class="user-details-wrapper">
 				    <div class="close" ng-click="close()">close</div>
@@ -76,7 +76,8 @@
 			    </div>
         </div>
 		</div>
-		<div class="adduser-block" ng-show="addform">
+    <!--ng-show="addform"-->
+		<div class="adduser-block top-anim anim-elem {{activeadduserclass}}" >
 			<div  class="adddetails" >
 		
 				<form >
