@@ -8,13 +8,14 @@
 	<script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="angular.js"></script>
 	<!--<script src="http://code.angularjs.org/1.1.5/angular.min.js" ></script>-->
 	<!-- <script data-require="angular.js@1.3.x" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.7/angular.js" data-semver="1.3.7"></script>-->
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.js""></script>
     
     <link data-require="ng-table@*" data-semver="0.3.0" rel="stylesheet" href="http://bazalt-cms.com/assets/ng-table/0.3.0/ng-table.css" />
     <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
    <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="bootstrap.min.css" />
     
     <link rel="stylesheet" href="style.css" />
+ <script src="ng-country-selector.js"></script>
     <script src="script.js"></script>
 </head>
 <body ng-app="main" >
@@ -35,6 +36,7 @@
 		</div>
 	</div>
 	<div class="content-wrapper"><!--ng-show="showitem"-->
+
 		<div  class="user-details-block left-anim anim-elem {{activedetailsclass}}" >
         <div ng-repeat="det in details">
 			    <div class="user-details-wrapper">
@@ -98,17 +100,31 @@
 				</form>
 			</div>
 		</div>
-		<div class="search-block" ng-show="searchuserdata">
+		<div class="search-block right-anim anim-elem {{activesearchclass}}" >
 		
 			<div class="search item" >
-					
-						<label>Search:</label>
-						<input type="text" ng-model="search.name">
-            <ul ng-show='search.name' ng-repeat="users in data | filter:search">
-                  <li ng-click="showcurrent(users.name)">{{$index + 1}} <img src={{users.gender}}.png alt={{users.name}}-image> <span>{{users.name }}</li>
+					  <div class="search-field">
+						    <label>Search:</label>
+                <div class="search-inner-field">
+						      <input type="text" ng-model="search.name">
+                  <!--<ul>
+                        <li ng-repeat="users in data | filter:search" ng-show='search.name' ng-click="showcurrent(users.name)">
+                             <img src={{users.gender}}.png alt={{users.name}}-image> <span>{{users.name }}</span>
+                        </li>
+                  </ul>-->
+                </div>
+            </div>
+             <ul class="search-result">
+                  <li ng-repeat="users in data | filter:search" ng-show='search.name'>
+                      <div class="left-col"> <img src={{users.gender}}.png alt={{users.name}}-image> </div>
+                      <div class="right-col">
+                         <span class="result-name">{{users.name }}</span>
+                         <span class="result-profile">{{users.profile }}</span>
+                      </div>
+                  </li>
             </ul>
             <!--<button ng-click="searchdata()">Search</button>-->
-						<button ng-click="searchclose()">close</button>
+						<span ng-click="searchclose()" class="search-close">close</span>
 			</div>
 		</div>
     <div class="searchresult" ng-show="searchResult">
@@ -128,20 +144,21 @@
 			<div class="page-number page-details"><span>Page:</span> <span class="label-data">{{tableParams.page()}}</span></div>
 			<div class="total-page-number page-details"><span>Count per page:</span> <span class="label-data"> {{tableParams.count()}}</span></div>
 		</div>-->
-		
-		<table ng-table="tableParams" class="table table-condensed table-striped">
-		<tr ng-repeat="user in data  | orderBy:'name'"  >
-		    <!--<td data-title="'Action'"><button ng-click="removename($index)">Remove</button></td>-->
-		    <td ng-show="showdataitem">{{user.name}} age is {{user.age}}</td>
-		    <td data-title="'Pic'"><img src={{user.gender}}.png alt={{user.name}}-image></td>
-		    <td data-title="'Name'">{{user.name}}</td>
-		    <td data-title="'Age'">{{user.age}}</td>
-		    <td data-title="'Country'">{{user.country}}</td>
-		     <td data-title="'Address'">{{user.name | uppercase }},{{user.country | uppercase}}</td>
-			 <td data-title="'View More'"><button ng-click="showdata(user.id,user.name,user.age,user.country,user.gender,user.profile)">View More</button></d>
-		    <!-- <td data-title="'image'">{{user.imgpath}}</td>-->
-		</tr>
-		</table>
+		<div class="table-wrapper">
+		      <table ng-table="tableParams" class="table table-condensed table-striped">
+		          <tr ng-repeat="user in data  | orderBy: 'name' " >
+		              <!--<td data-title="'Action'"><button ng-click="removename($index)">Remove</button></td>-->
+		              <td ng-show="showdataitem">{{user.name}} age is {{user.age}}</td>
+		              <td data-title="'Pic'"><img src={{user.gender}}.png alt={{user.name}}-image></td>
+		              <td data-title="'Name'">{{user.name}}</td>
+		              <td data-title="'Age'">{{user.age}}</td>
+		              <td data-title="'Country'">{{user.country}}</td>
+		               <td data-title="'Address'">{{user.name | uppercase }},{{user.country | uppercase}}</td>
+			           <td data-title="'View More'"><button ng-click="showdata(user.id,user.name,user.age,user.country,user.gender,user.profile)">View More</button></d>
+		              <!-- <td data-title="'image'">{{user.imgpath}}</td>-->
+		          </tr>
+		      </table>
+    </div>
 	    </div>
 	   <div class="footer">
               <span class="pull-right">Developed by geogeorge</span>
