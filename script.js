@@ -1,5 +1,5 @@
 var app = angular.module('main', ['ngTable']).
-controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) {
+controller('DemoCtrl', function($scope,$element, $http,$timeout, ngTableParams) {
 	$scope.data = [];
   $scope.usernames=[];
 	$scope.details = [];
@@ -16,6 +16,7 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
   $scope.usersearchdata=false;
   $scope.activedetailsclass="inactive";
   $scope.activeadduserclass="inactive";
+  $scope.activesearchclass="inactive";
 	//$scope.filedata = 'none';
 	$scope.usercount=$scope.data.length;
 	$scope.adddata=function(){
@@ -30,6 +31,7 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
 				gender:$scope.persongender,
 				imgpath:$scope.imageupload
 		});
+
 
 				/*var f = document.getElementById('file').files[0],
 				r = new FileReader();
@@ -80,6 +82,7 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
 	$scope.searchusers=function(){
     
 		$scope.searchuserdata=!$scope.searchuserdata;
+      $scope.activesearchclass="active";
     
 	};
   $scope.searchdata=function(){
@@ -117,21 +120,22 @@ controller('DemoCtrl', function($scope,$element, $http, ngTableParams,$timeout) 
 	$scope.searchclose=function(){
 		$scope.searchuserdata=!$scope.searchuserdata;
     //$scope.search='';
+      $scope.activesearchclass="inactive";
      $scope.searchResult=false;
 	};
   //http://ng-table.com/#/intro/demo-real-world
-	$scope.tableParams = new ngTableParams({
-		page: 1, // show first page
-		count: 5 // count per page
-	}, {
-	total:$scope.data.length, // length of data
-	getData: function($defer, params) {
-	//params.total();
-  //dataset: $scope.data; 
-	$defer.resolve($scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-	//$defer.resolve($scope.dataset.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-	}
-	});
+	    $scope.tableParams = new ngTableParams({
+		    page: 1, // show first page
+		    count:7 // count per page
+	    }, {
+	    total:$scope.data.length, // length of data
+	    getData: function($defer, params) {
+	        //params.total();
+          //dataset: $scope.data; 
+	        $defer.resolve($scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+	        //$defer.resolve($scope.dataset.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+	        }
+	    });
 	});
 });
 app.directive('search',function($timeout){
