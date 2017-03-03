@@ -2,228 +2,7 @@
 <html>
 <head>
 	<style>
-		body{
-			width:100%;
-			margin:0;
-			padding:0;
-			background:rgba(0,0,0,0.5)!important;
-		}
-		.mainapp{
-			width:1100px;
-			margin:0 auto;
-			background:#fff;
-			padding:0;
-			position:relative;
-		}
-		.ng-table tr:nth-child(even){
-			background:rgba(101,168,161,0.2);
-		}
-		.ng-table td,.ng-table th{
-			border-left:2px solid #ffffff;
-			text-align:center;
-		}
-		.header{
-			background:rgba(101,168,161,0.5);
-		}
-		th.header{
-			background:rgba(101,168,161,.6);
-		}
-		.total-users{
-			float:right;
-			margin:0 10px 0 0;
-			color:rgba(101, 168, 161, 0.5);
-			font-weight:700;
-			
-		}
-		.total-users span.ng-binding{
-			border-radius:100%;
-			border:1px solid #ffffff;
-			padding:2px;
-			background-color:#ffffff;
-		}
-		.selection-users{
-			background:#ffffff;
-			border:none;
-			width:200px;
-			padding:5px 0;
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			text-indent: 1px;
-			text-overflow: '';
-		}
-		.selection-users option{
-			outline:0px;
-			
-		}
-		.selection-users option:nth-child(even){
-			background:rgba(101,168,161,0.2);
-		}
-		.content-wrapper{
-			padding:10px;
-		}
-		.page{
-			clear:both;
-			overflow:hidden;
-			padding:10px 0;
-			color:rgba(101,168,161,1);
-			font-weight:700;
-		}
-		.page span:nth-child(1){
-			
-		}
-		.page-details .label-data{
-			color:#ffffff;
-			border-radius:100%;
-			padding:2px;
-			background-color:rgba(101,168,161,1);
-			display:inline-block;
-			text-align:center;
-			width:25px;
-		}
-		.page-number{
-			float:left;
-		}
-		.total-page-number{
-			float:right;
-		}
-		.adduser{
-			
-		}
-		.search.item,.adddetails,.user-details-wrapper{
-			display:block;	
-			width:400px;
-			border:1px solid #DEDEDE;
-			padding:10px;
-			overflow:hidden;
-			margin:10px;
-			background:#f1f1f1;
-			position:fixed;
-			left:50%;
-			margin:0 0 0 -200px;
-			top:30%;
-				
-		}
-		.search.item{
-			padding:30px 40px;
-		}
-		.search-block,.adduser-block,.user-details-block{
-			position:absolute;
-			height:100%;
-			width:100%;
-			left:0;
-			background:rgba(101,168,161,0.5);
-			top:0;
-		}
-		.user-details-wrapper{
-			background:rgb(135,199,29);
-			padding:20px;
-			border:0px;
-			
-		}
-		.user-details-wrapper .detailsblock{
-			overflow:hidden;
-			clear:both;
-		}
-		.adddetails .item{
-			clear:both;
-			padding:10px 0
-		}
-		.detailsblock div{
-			padding:0;
-			font-size:14px;
-			
-		}
-		.detailsblock .label{
-			color:#ffffff;
-			font-weight:300;
-			width:50px;
-			text-align:left;	
-		}
-		.detailsblock .output{
-			color:#ffffff;
-			font-weight:700;
-			padding:0 0 0 10px;
-		}
-		.adddetails label{
-			float:left;		
-		}
-		.adddetails input,.adddetails button{
-			float:right;		
-		}
-		.detailsblock{
-			clear:both;		
-		}
-		.detailsblock div,.flag{
-			display:inline-block;
-		}
-		.flag{
-			width:50px;
-			height:50px;
-		}
-		td{
-      vertical-align:middle!important;
-    }
-		.user-details-block .close{
-			font-size:14px;
-			color:#fff;
-			text-shadow:none;
-			opacity:1;
-		}
-		.adduser{
-			clear:both;
-			overflow:hidden;
-			margin:0 0 20px 0;
-		}
-		.adduser li{
-			list-style-type:none;
-			float:left;
-			padding:10px;
-		}
-		.footer{
-			background: none repeat scroll 0 0 rgba(101, 168, 161, 0.5);
-			height:50px;
-		}
-    .resultset{
-      list-style-type:none;
-      padding:0;
-      border-bottom:1px solid #cdcdcd;
-    }
-    .resultset:last-child{
-        border:none;
-    }
-     .resultset li{
-      font-size:16px;
-    }
-     .resultset .name{
-      font-size:20px;
-      
-    } 
-    .searchresult {
-    background: rgba(101, 168, 161, 0.5) none repeat scroll 0 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-	 .searchresult .searchresult-sub{
-    background: #f1f1f1 none repeat scroll 0 0;
-    border: 1px solid #dedede;
-    display: block;
-    left: 50%;
-    margin: 0 0 0 -200px;
-    overflow: hidden;
-    padding: 10px;
-    position: fixed;
-    top: 10%;
-    width: 400px;
-  }
-  .footer span{  
-    font-size:12px;
-    padding: 10px;
-    font-style:italic;
-    display:block;
-  }
+
 	</style>
  	<!--<script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script>-->
 	<script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="angular.js"></script>
@@ -255,45 +34,47 @@
 			</div>
 		</div>
 	</div>
-	<div class="content-wrapper">
-		<div ng-repeat="det in details" class="user-details-block" ng-show="showitem">
-			<div class="user-details-wrapper">
-				<div class="close" ng-click="close()">close</div>
-				<div class="detailsblock"><img src={{det.gender}}.png alt={{det.name}}-image></div>
-				<div class="detailsblock">
-					<div class="namelbl label">Name:</div>
-					<div class="name output">{{det.name}}</div>
-				</div>
-				<div class="detailsblock">
-					<div class="idlbl label">ID:</div>
-					<div class="id output">{{det.id.split(' ').join('') }}</div>
-				</div>
-				<div class="detailsblock">
-					<div class="genderlbl label">Gender:</div>
-					<div class="gender output">{{det.gender}}</div>
-				</div>
-				<div class="detailsblock">
-					<div class="emaillbl label">Email-ID:</div>
-					<div class="email output">{{det.email.split(' ').join('') }}</div>
-				</div>
-				<div class="detailsblock">	
-					<div class="agelbl label">Age:</div>
-					<div class="age output">{{det.age}}</div>
-				</div>
-				<div class="detailsblock">
-					<div class="countrylbl label">Country:</div>
-					<div class="country output">{{det.country}}</div>
-				</div>
-				<div class="detailsblock">
-					<div class="infolbl label">Information:</div>
-					<div class="info output">{{det.profile}}</div>
-				</div>
-				<!--<div class="detailsblock countryimg">
-						<img class="flag" src="img/{{det.country | lowercase }}.png" alt={{det.name}}-image>		
-				</div>-->
+	<div class="content-wrapper"><!--ng-show="showitem"-->
+		<div  class="user-details-block {{activedetailsclass}}" >
+        <div ng-repeat="det in details">
+			    <div class="user-details-wrapper">
+				    <div class="close" ng-click="close()">close</div>
+				    <div class="detailsblock"><img src={{det.gender}}.png alt={{det.name}}-image></div>
+				    <div class="detailsblock">
+					    <div class="namelbl label">Name:</div>
+					    <div class="name output">{{det.name}}</div>
+				    </div>
+				    <div class="detailsblock">
+					    <div class="idlbl label">ID:</div>
+					    <div class="id output">{{det.id.split(' ').join('') }}</div>
+				    </div>
+				    <div class="detailsblock">
+					    <div class="genderlbl label">Gender:</div>
+					    <div class="gender output">{{det.gender}}</div>
+				    </div>
+				    <div class="detailsblock">
+					    <div class="emaillbl label">Email-ID:</div>
+					    <div class="email output">{{det.email.split(' ').join('') }}</div>
+				    </div>
+				    <div class="detailsblock">	
+					    <div class="agelbl label">Age:</div>
+					    <div class="age output">{{det.age}}</div>
+				    </div>
+				    <div class="detailsblock">
+					    <div class="countrylbl label">Country:</div>
+					    <div class="country output">{{det.country}}</div>
+				    </div>
+				    <div class="detailsblock">
+					    <div class="infolbl label">Information:</div>
+					    <div class="info output">{{det.profile}}</div>
+				    </div>
+				    <!--<div class="detailsblock countryimg">
+						    <img class="flag" src="img/{{det.country | lowercase }}.png" alt={{det.name}}-image>		
+				    </div>-->
 	
 				
-			</div>
+			    </div>
+        </div>
 		</div>
 		<div class="adduser-block" ng-show="addform">
 			<div  class="adddetails" >
